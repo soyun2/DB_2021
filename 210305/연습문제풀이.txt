@@ -1,0 +1,52 @@
+--문제1
+select e.ename 사원명, d.deptno 부서번호, d.dname 부서명
+from dept d right join emp e
+on d.deptno=e.deptno;
+--문제2
+select e.ename 사원명, e.job 업무, e.sal 급여, d.dname 부서명
+from dept d right join emp e
+on d.deptno=e.deptno
+where d.loc='NEW YORK';
+--문제3
+select e.ename 사원명, d.dname 부서명, d.loc 위치
+from dept d right join emp e
+on d.deptno=e.deptno
+where e.comm is not null;
+--문제4
+select e.empno 사번, e.ename 사원명, e.sal 급여, d.dname 부서명
+from dept d right join emp e
+on d.deptno=e.deptno
+where e.sal>=2000
+order by e.sal desc;
+--문제5
+select e.empno 사번, e.ename 사원명, e.job 업무, e.sal 급여, d.dname 부서명
+from dept d right join emp e
+on d.deptno=e.deptno
+where e.job='MANAGER' and e.sal>=2500
+order by e.empno;
+--문제6
+select distinct e.empno 사번, e.ename 사원명, e.sal  급여, 4
+from emp e, salgrade s
+where
+e.sal between (select s.losal from salgrade s where s.grade=4) 
+and (select s.hisal from salgrade s where s.grade=4);
+--문제7
+select e.ename, e.job, d.dname, d.loc
+from dept d right join emp e
+on d.deptno=e.deptno
+where e.ename like '%L%';
+--문제8
+select e.ename 사원명, e.hiredate 입사일, m.ename 관리자이름, m.hiredate 관리자입사일
+from emp e inner join emp m
+on e.mgr = m.empno
+where e.hiredate<m.hiredate;
+--문제9
+select e.ename, e.sal, e.hiredate, e.comm
+from emp e right join dept d
+on e.deptno = d.deptno
+where d.loc = 'DALLAS';
+--문제10
+select e.ename, e.sal, e.hiredate, d.dname
+from emp e right join dept d
+on e.deptno = d.deptno
+where e.hiredate < add_months(sysdate, -360);
