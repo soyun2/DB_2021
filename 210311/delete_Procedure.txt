@@ -1,0 +1,16 @@
+create or replace PROCEDURE del_buytbl
+  (  p_idnum              buytbl.idnum%type      
+   )
+   
+IS
+     zeroDelete           Exception;
+ BEGIN
+     delete from buytbl where idnum=p_idnum;
+--     if SQL%Notfound then
+--        Raise zeroDelete;
+--     end if;
+--      exception
+--       when zeroDelete then
+--        dbms_output.put_line(p_idnum || '해당 데이터가 없습니다.');
+    commit;
+END del_buytbl;

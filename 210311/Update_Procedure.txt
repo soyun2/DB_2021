@@ -1,0 +1,24 @@
+create or replace PROCEDURE update_buytbl
+  (  p_idnum              buytbl.idnum%type 
+--   , p_userid             buytbl.userid%type
+   , p_prodname           buytbl.prodname%type  := 'p'
+   , p_groupname          buytbl.groupname%type := 'g'
+   , p_price              buytbl.price%type DEFAULT 0
+   , p_amount             buytbl.amount%type DEFAULT 0
+   )
+   
+IS
+
+ BEGIN
+      update buytbl
+      set 
+         prodname = p_prodname
+        ,groupname = p_groupname
+        ,price  =   p_price
+        ,amount =   p_amount
+      where idnum=p_idnum;
+      commit;
+      exception
+       when no_data_found then
+        dbms_output.put_line('오류 발생');
+END update_buytbl;

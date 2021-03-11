@@ -1,0 +1,16 @@
+create or replace PROCEDURE add_buytbl
+  (  p_idnum              buytbl.idnum%type
+   , p_userid             buytbl.userid%type
+   , p_prodname           buytbl.prodname%type
+   , p_groupname          buytbl.groupname%type
+   , p_price              buytbl.price%type
+   , p_amount             buytbl.amount%type
+   , p_sss                buytbl.sss%type
+   )
+IS
+BEGIN
+  INSERT INTO buytbl (idnum, userid, prodname,
+                           groupname, price,amount,sss)
+    VALUES(p_idnum, p_userid, p_prodname, p_groupname, p_price,p_amount,p_sss);
+    commit;
+END add_buytbl;
