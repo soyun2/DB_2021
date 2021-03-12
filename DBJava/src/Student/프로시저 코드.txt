@@ -1,0 +1,54 @@
+1. 입력
+create or replace procedure add_student
+(  p_studentno              student.studentno%type 
+   , p_name                  student.name%type
+   , p_phonenumber             student.phonenumber%type
+   , p_city                 student.city%type
+   , p_department             student.department%type
+)
+is
+begin
+insert into student (studentno, name, phonenumber, city, department)
+values (p_studentno, p_name, p_phonenumber, p_city, p_department);
+commit;
+end add_student;
+
+2.삭제
+create or replace procedure del_student
+(p_studentno student.studentno%type)
+is
+begin
+delete from student where studentno = p_studentno;
+commit;
+end del_student;
+
+3.조회
+create or replace PROCEDURE SEEALL
+(p_cursor OUT SYS_REFCURSOR)
+IS
+BEGIN
+OPEN p_cursor FOR
+SELECT *
+FROM STUDENT;
+END SEEALL;
+
+4.업데이트
+create or replace PROCEDURE update_student
+  (  p_studentno              student.studentno%type 
+   , p_name                  student.name%type
+   , p_phonenumber             student.phonenumber%type
+   , p_city                 student.city%type
+   , p_department             student.department%type
+   )   
+IS
+
+ BEGIN
+      update student
+      set        
+        name = p_name
+        ,phonenumber  =   p_phonenumber
+        ,city =   p_city
+        ,department = p_department
+      where studentno = p_studentno;
+      commit;
+ END update_student;
