@@ -36,8 +36,8 @@ class CallProcedure2 {
 			 // 프로시저 호출
 			 CallableStatement cs = conn.prepareCall("begin update_student(?,?,?,?,?); end;");
 			 // 입력 파라메터
-			 cs.setInt(1, stnu);
-			 cs.setString(2, stna);
+			 cs.setInt(1, stnu); //따옴표 없이 값 대입
+			 cs.setString(2, stna); //따옴표 가지고 값 대입
 			 cs.setString(3, stphone);
 			 cs.setString(4, stcity);
 			 cs.setString(5, stdep);
@@ -51,8 +51,7 @@ class CallProcedure2 {
 			 {
 				 System.out.println(seq+"값");
 			 }
-			 
-//			 rs.close();
+
 			 cs.close();
 			 conn.close();
 			 } catch(Exception e){
